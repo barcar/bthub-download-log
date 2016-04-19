@@ -1,21 +1,21 @@
-BT Home Hub 4 Reboot Script
+BT Hub Log Download Script
 ==========================
 
-Reboot the BT Home Hub 4 from the command line instead of using the nasty looking web interface. Useful for quick reboots or you can configure as a cron job for periodic restarts.
+Download the event log from a BT Business Hub 5 using the command line instead of using the nasty looking web interface. Useful for sending to a central log server. Can be configured as a cron job.
 
 ## Tested on
-* Linux Mint 16 Petra
-* BT Home Hub 4 (Type A), Software version 4.7.5.1.83.8.130.1.17 
+* Debian Jessie
+* BT Business Hub 5
 
 ## Dependencies
 * cURL
 
 ## How it works
-cURL is used to spoof the HTTP POST requests that would usually be made from the Home Hub web UI. A series of requests are made to the router in order to login and finally perform the reboot.
+cURL is used to spoof the HTTP POST requests that would usually be made from the Home Hub web UI. A series of requests are made to the router in order to login and download the log file.
 
 ## Usage
-To reboot your BT Home Hub 4 simply execute the reboot-router.sh script passing in your admin password. For example:
+To download the log file from your BT Business Hub simply execute the download-log.sh script passing in your admin password. For example:
 
 ```bash
-./reboot-router.sh abc123
+./download-log.sh abc123
 ```

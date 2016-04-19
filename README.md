@@ -1,4 +1,4 @@
-BT Hub Log Download Script
+BT Hub Download Log Script
 ==========================
 
 Download the event log from a BT Business Hub 5 using the command line instead of using the nasty looking web interface. Useful for sending to a central log server. Can be configured as a cron job.

@@ -23,11 +23,11 @@ function setup() {
 }
 
 function setPostId() {
-  local REBOOT_HTML=$(curl -s -L --cookie ${COOKIE_JAR} "${ROUTER_BASE_URL}/index.cgi?${REQUEST_ID}&active_page=9122")
-  POST_ID=$(echo ${REBOOT_HTML} | sed -n '/post_id/s/.*name="post_id"\s\+value="\([^"]\+\).*/\1/p')
+  local LOG_HTML=$(curl -s -L --cookie ${COOKIE_JAR} "${ROUTER_BASE_URL}/index.cgi?${REQUEST_ID}&active_page=9122")
+  POST_ID=$(echo ${LOG_HTML} | sed -n '/post_id/s/.*name="post_id"\s\+value="\([^"]\+\).*/\1/p')
 }
 
-function rebootRouter() {
+function downloadLog() {
   #Setup prerequisites
   setup
 
@@ -37,8 +37,8 @@ function rebootRouter() {
   #Grab the post_id hidden variable for the reboot post request
   setPostId
 
-  #Do reboot
-  postDataToRouter "${REQUEST_ID}&active_page=9122&active_page_str=page_settings_a_restart&mimic_button_field=submit_button_restart_my_home_hub%3A+..&button_value=&post_id=${POST_ID}" 
+  #Do download
+  postDataToRouter "${REQUEST_ID}&active_page=9152&active_page_str=page_event&mimic_button_field=submit_button_bt_save%3A+..&button_value=&post_id=${POST_ID}" 
 
   if grep 'Restarting' ${OUTPUT_FILE} > /dev/null
   then
@@ -67,4 +67,4 @@ function postDataToRouter() {
                                       -L > /dev/null 2>&1
 }
 
-rebootRouter
+downloadLog

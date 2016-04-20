@@ -19,3 +19,5 @@ To download the log file from your BT Business Hub simply execute the download-l
 ```bash
 ./download-log.sh abc123
 ```
+
+The resulting CSV log file is saved as ./bthub.log with newest entries last. Note that this is the reverse of the native web UI download which has newest entries first.

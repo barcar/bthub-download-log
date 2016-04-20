@@ -5,6 +5,7 @@ ROUTER_IP=$(/sbin/ip route | awk '/default/ { print $3 }')
 ROUTER_BASE_URL="http://${ROUTER_IP}"
 COOKIE_JAR=/tmp/cookies.txt
 OUTPUT_FILE=/tmp/output.html
+LOG_FILE=./bthub.log
 
 trap cleanUp EXIT SIGINT SIGTERM
 
@@ -40,11 +41,13 @@ function downloadLog() {
   #Do download
   postDataToRouter "${REQUEST_ID}&active_page=9152&active_page_str=page_event&mimic_button_field=submit_button_bt_save%3A+..&button_value=&post_id=${POST_ID}" 
 
-  if grep 'Restarting' ${OUTPUT_FILE} > /dev/null
+if grep 'Admin login successful' ${OUTPUT_FILE} > /dev/null
   then
-    echo "Router rebooted successfully"
+    echo "Log downloaded successfully"
+    # move temp file to final location and reverse order (oldest at top)
+    tac ${OUTPUT_FILE} > ${LOG_FILE}
   else
-    echo "Router reboot failed"
+    echo "Log download failed"
     exit 1
   fi
 }

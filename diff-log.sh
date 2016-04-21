@@ -1,10 +1,11 @@
 #!/bin/bash
 
 ROUTER_PASSWORD=$1
-DOWNLOAD_SCRIPT=./download-log.sh
-LOG_FILE=./bthub.log
+DOWNLOAD_SCRIPT=${BASH_SOURCE%/*}/download-log.sh
+LOG_FILE=${BASH_SOURCE%/*}/bthub.log
 TMP_FILE=/tmp/bthub_old.log
-DIFF_FILE=./bthub_diff.log
+DIFF_FILE=${BASH_SOURCE%/*}/bthub_diff.log
+
 
 trap cleanUp EXIT SIGINT SIGTERM
 

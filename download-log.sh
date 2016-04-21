@@ -5,7 +5,7 @@ ROUTER_IP=$(/sbin/ip route | awk '/default/ { print $3 }')
 ROUTER_BASE_URL="http://${ROUTER_IP}"
 COOKIE_JAR=/tmp/cookies.txt
 OUTPUT_FILE=/tmp/output.html
-LOG_FILE=./bthub.log
+LOG_FILE=${BASH_SOURCE%/*}/bthub.log
 
 trap cleanUp EXIT SIGINT SIGTERM
 

@@ -6,7 +6,6 @@ LOG_FILE=${BASH_SOURCE%/*}/bthub.log
 TMP_FILE=/tmp/bthub_old.log
 DIFF_FILE=${BASH_SOURCE%/*}/bthub_diff.log
 
-
 trap cleanUp EXIT SIGINT SIGTERM
 
 function cleanUp() {
@@ -26,6 +25,7 @@ function diffLog() {
     echo "Starting diff"
     # Output any new lines since last execution
     diff --new-file --old-line-format='' --new-line-format='%L' --unchanged-line-format='' ${TMP_FILE} ${LOG_FILE} > ${DIFF_FILE}
+    exit 0
   else
     echo "Log not found"
     # Create an empty diff file if nothing downloaded

@@ -21,3 +21,9 @@ To download the log file from your BT Business Hub simply execute the download-l
 ```
 
 The resulting CSV log file is saved as ./bthub.log with newest entries last. Note that this is the reverse of the native web UI download which has newest entries first.
+
+The script diff-log.sh wraps around the download script to perform a diff on the previously downloaded log and generates a file ./bthub_diff.log which contains only the new lines since last run. Usage is the same:
+
+```bash
+./diff-log.sh abc123
+```
